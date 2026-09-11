@@ -1,0 +1,11 @@
+key,value
+site_name,ZAM CLOTHING
+currency,INR
+shipping_fee,79
+free_shipping_threshold,1499
+whatsapp_number,
+whatsapp_enabled,FALSE
+support_email,hello@zamclothing.example
+instagram_url,https://instagram.com/
+announcement_text,"Free shipping on orders above ₹1,499"
+store_address,"ZAM Clothing Studio, Your City, India"

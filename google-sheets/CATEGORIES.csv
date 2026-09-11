@@ -1,0 +1,5 @@
+category_id,name,slug,description,image,display_order,status
+CAT01,T-Shirts,t-shirts,"Everyday essentials, made for everyday wear.",https://YOUR-DOMAIN.example/images/category-tshirts.jpg,1,active
+CAT02,Shirts,shirts,Relaxed shirts that go from campus to café.,https://YOUR-DOMAIN.example/images/category-shirts.jpg,2,active
+CAT03,Trousers,trousers,Easy trousers with room to move.,https://YOUR-DOMAIN.example/images/category-trousers.jpg,3,active
+CAT04,Shoes,shoes,"Clean, comfortable footwear for long days.",https://YOUR-DOMAIN.example/images/category-shoes.jpg,4,active
