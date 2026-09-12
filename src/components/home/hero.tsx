@@ -20,12 +20,12 @@ export function Hero() {
       {/* Storefront image */}
       <div className="relative h-[62svh] min-h-[420px] md:absolute md:inset-0 md:h-auto md:min-h-0">
         <Image
-          src="/images/hero-storefront.jpg.jpg"
+          src="/images/hero-storefront.jpg"
           alt="The ZAM Clothing storefront at dusk — warm light, folded tees on white shelves and a tall potted palm by the door."
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[62%_center] md:object-[center_center]"
+          className="object-cover object-center"
         />
         {/* Mobile: fade into the copy panel. Desktop: soft left-side veil for legibility. */}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-ink/30 md:hidden" aria-hidden />
