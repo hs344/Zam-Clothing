@@ -50,6 +50,26 @@ export function normalizeImageUrl(url: string): string {
   return u;
 }
 
+/**
+ * Category artwork is stored in public/images. Older sheet rows may contain
+ * either a placeholder domain or the single-extension filename, while the
+ * committed assets use the actual `.jpg.jpg` filenames. Resolve those rows
+ * to the local public asset so the showroom works consistently on Vercel.
+ */
+function normalizeCategoryImage(url: string): string {
+  const u = normalizeImageUrl(url);
+  if (!u) return "";
+
+  const match = u.match(/(?:^|\/)images\/(category-[^/?#]+)(?:[?#].*)?$/i);
+  if (!match) return u;
+
+  let filename = match[1];
+  if (/\.jpg$/i.test(filename) && !/\.jpg\.jpg$/i.test(filename)) {
+    filename += ".jpg";
+  }
+  return `/images/${filename}`;
+}
+
 export function normalizeProduct(raw: Raw): Product {
   const category = str(raw.category);
   const images = [raw.image_1, raw.image_2, raw.image_3, raw.image_4]
@@ -89,7 +109,7 @@ export function normalizeCategory(raw: Raw): Category {
     name,
     slug: str(raw.slug) || slugify(name),
     description: str(raw.description),
-    image: normalizeImageUrl(str(raw.image)),
+    image: normalizeCategoryImage(str(raw.image)),
     display_order: num(raw.display_order, 999),
     status: str(raw.status).toLowerCase() || "active",
   };
