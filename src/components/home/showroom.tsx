@@ -129,16 +129,29 @@ function ShowroomPanel({
       className="relative h-full w-full shrink-0 overflow-hidden bg-[#dfd6c8]"
     >
       {category.image && (
-        // The showroom section — always full screen (object-cover), centred on the sign.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={category.image}
-          alt={`${category.name} section of the ZAM showroom`}
-          loading={index === 0 ? "eager" : "lazy"}
-          decoding="async"
-          draggable={false}
-          className="absolute inset-0 h-full w-full object-cover object-[center_45%]"
-        />
+        <>
+          {/* Soft full-panel backdrop fills the aspect-ratio difference without cropping the actual image. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={category.image}
+            alt=""
+            aria-hidden="true"
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            draggable={false}
+            className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-45"
+          />
+          {/* Keep the complete showroom artwork visible instead of aggressively cropping its edges. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={category.image}
+            alt={`${category.name} section of the ZAM showroom`}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            draggable={false}
+            className="absolute inset-0 h-full w-full object-contain object-center"
+          />
+        </>
       )}
       {/* Legibility veil across the bottom (over the showroom floor) — the sign and shelves stay clear. */}
       <div className="absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-ink/85 via-ink/40 to-transparent" aria-hidden />
