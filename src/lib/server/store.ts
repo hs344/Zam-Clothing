@@ -16,7 +16,6 @@ import type {
   Category, CreateOrderRequest, InventoryItem, OrderRecord, OrderStatusResponse, Product, Settings,
 } from "@/lib/types";
 import { AppsScriptError, scriptGet, scriptPost } from "./apps-script";
-import { createDemoOrder, getDemoOrderStatus } from "./demo-orders";
 import { computeShipping, normalizePhone } from "@/lib/format";
 
 export { AppsScriptError };
@@ -86,7 +85,8 @@ export async function createOrder(req: CreateOrderRequest): Promise<OrderRecord>
     return scriptPost<OrderRecord>("CREATE_ORDER", { customer: req.customer, items: req.items, requested_order_id: req.requested_order_id });
   }
   // Demo mode: recalculate everything server-side from the demo catalogue,
-  // exactly as the Apps Script backend does from the sheet.
+const { createDemoOrder } = await import("./demo-orders"); 
+ // exactly as the Apps Script backend does from the sheet.
   const [products, inventory, settings] = await Promise.all([getProducts(), getInventory(), getSettings()]);
   const items = req.items.map((item) => {
     const product = products.find((p) => p.product_id === item.product_id);
@@ -106,6 +106,7 @@ export async function createOrder(req: CreateOrderRequest): Promise<OrderRecord>
       product_id: product.product_id,
       product_name: product.name,
       size: item.size,
+
       colour: item.colour,
       quantity,
       unit_price: product.price,
@@ -132,5 +133,6 @@ export async function getOrderStatus(orderId: string, phone: string): Promise<Or
   if (SHEETS_CONNECTED) {
     return scriptGet<OrderStatusResponse | null>("GET_ORDER_STATUS", { order_id: id, phone: digits }, false);
   }
-  return getDemoOrderStatus(id, digits);
+ const { getDemoOrderStatus } = await import("./demo-orders");
+return getDemoOrderStatus(id, digits);
 }
