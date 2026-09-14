@@ -15,17 +15,17 @@ export function Hero() {
   return (
     <section
       aria-label="ZAM storefront"
-      className="relative -mt-16 md:-mt-[72px] bg-ink text-cream overflow-hidden"
+      className="relative -mt-16 md:-mt-[72px] bg-ink text-cream overflow-hidden md:aspect-[16/9]"
     >
       {/* Storefront image */}
-      <div className="relative h-[62svh] min-h-[420px] md:absolute md:inset-0 md:h-auto md:min-h-0">
+      <div className="relative h-[62svh] min-h-[420px] md:absolute md:inset-0 md:h-full md:min-h-0">
         <Image
           src="/images/hero-storefront.jpg.jpg"
           alt="The ZAM Clothing storefront at dusk — warm light, folded tees on white shelves and a tall potted palm by the door."
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-contain object-center"
         />
         {/* Mobile: fade into the copy panel. Desktop: soft left-side veil for legibility. */}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-ink/30 md:hidden" aria-hidden />
@@ -37,7 +37,7 @@ export function Hero() {
       </div>
 
       {/* Copy */}
-      <div className="relative mx-auto max-w-[1440px] px-6 md:px-10 pb-14 pt-8 md:pt-0 md:pb-0 md:min-h-[100svh] md:flex md:items-center">
+      <div className="relative mx-auto max-w-[1440px] px-6 md:px-10 pb-14 pt-8 md:h-full md:pb-0 md:pt-0 md:flex md:items-center">
         <div className="md:max-w-[560px] lg:max-w-[620px] md:pt-24">
           <p className="eyebrow text-gold-soft fade-up">{BRAND.name}</p>
           <h1 className="font-serif mt-5 text-[2.9rem] leading-[1.02] sm:text-6xl lg:text-[5.4rem] fade-up delay-1">
