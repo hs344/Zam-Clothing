@@ -20,7 +20,7 @@ export function Hero() {
       {/* Storefront image */}
       <div className="relative h-[62svh] min-h-[420px] md:absolute md:inset-0 md:h-auto md:min-h-0">
         <Image
-          src="/images/hero-storefront.jpg"
+          src="/images/hero-storefront.jpg.jpg"
           alt="The ZAM Clothing storefront at dusk — warm light, folded tees on white shelves and a tall potted palm by the door."
           fill
           priority
